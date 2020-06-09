@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+.button-row {
+  display: table-cell;
+}
+
+.button-row button {
+  display: table-cell;
+}
+
+button {
+  margin: 5px;
+}
+
+.align-right {
+  float: right;
+}

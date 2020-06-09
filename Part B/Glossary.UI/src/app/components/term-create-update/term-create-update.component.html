@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space"
+    >Please <span *ngIf="isNewTerm; else addText">add a new</span> term
+    below</span
+  >
+  <ng-template #addText>
+    edit
+  </ng-template>
+</mat-toolbar>
+
+<div class="material-form" novalidate>
+  <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field class="material-full-width">
+      <mat-label>Unique identifier</mat-label>
+      <input matInput formControlName="id" disabled />
+    </mat-form-field>
+
+    <mat-form-field class="material-full-width">
+      <mat-label>Term</mat-label>
+      <input matInput formControlName="term" placeholder="Ex. abyssal plain" />
+      <mat-error *ngIf="formGroup.controls['term'].hasError('required')">
+        Term is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="material-full-width">
+      <textarea
+        matInput
+        placeholder="Definition"
+        matTextareaAutosize
+        matAutosizeMinRows="1"
+        matAutosizeMaxRows="10"
+        formControlName="definition"
+      ></textarea>
+      <mat-error *ngIf="formGroup.controls['definition'].hasError('required')">
+        Definition is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button type="button" routerLink="/">
+        Go back
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!formGroup.valid || formGroup.pristine"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
